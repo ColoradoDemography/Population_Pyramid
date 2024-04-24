@@ -1,34 +1,8 @@
 ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
 // window:load event for Javascript to run after HTML
 // because this Javascript is injected into the document head
-/* function parse() {
-  var searchCounty = 0; //document.getElementById("getCounty").value;
-  var searchYear = 2022; //document.getElementById("getYear").value;
-  //var toYear = document.getElementById("toYear").value;
 
-  parseData(
-      'https://gis.dola.colorado.gov/lookups/sya?&county='+searchCounty+'&year='+searchYear+'&choice=5yr',
-      calcTotals,
-      searchCounty,
-      searchYear,
-      toYear
-  );
-}
 
-function parseData(file, callback) {
-
-  Papa.parse(file, {
-    download: true,
-    dynamicTyping: true,
-    header: true,
-    complete: function(results) {
-      callBack(results.data);
-    }
-  });
-} */
-
-var searchCounty = 0;
-var searchYear = 2022;
 function getAgeData(county, year){
   var data = $.ajax({
     url: "https://gis.dola.colorado.gov/lookups/sya?&county="+county+"&year="+year+"&choice=5yr",
@@ -38,35 +12,57 @@ function getAgeData(county, year){
   return data.responseJSON;
 }
 
-agepop = getAgeData(0,2022);
-//console.log(agepop);
-var malepop = [];
-var femalepop = [];
-for (i in agepop){
-  malepop.push(parseInt(agepop[i].malepopulation));
-  femalepop.push(parseInt(agepop[i].femalepopulation));
-}
-console.log(malepop);
-console.log(femalepop);
+
+
 
 window.addEventListener('load', () => {
     // Javascript code to execute after DOM content
    
     // full ZingChart schema can be found here:
     // https://www.zingchart.com/docs/api/json-configuration/
+
+    
+var searchCounty = document.getElementById("selcounty").value;
+var searchCountyText = selcounty.options[selcounty.selectedIndex].text;
+var searchYear = document.getElementById('selyear').value;
+var searchYearText = selyear.options[selyear.selectedIndex].text;
+var chartType = document.getElementById('seltype').value;
+
+renderBtn.addEventListener('click', render);
+
+    agepop = getAgeData(searchCounty,searchYear);
+    //console.log(agepop);
+    var malepop = [];
+    var femalepop = [];
+    for (i in agepop){
+      malepop.push(parseInt(agepop[i].malepopulation));
+      femalepop.push(parseInt(agepop[i].femalepopulation));
+    }
+    console.log(malepop);
+    console.log(femalepop);
+
     let chartConfig = {
       type: 'pop-pyramid',
       globals: {
-        fontSize: '14px',
-        color: '#000'
+        fontSize: '14px'
       },
       title: {
-        text: 'Population Pyramid by Age Group',
+        text: searchCountyText + ' Population by Age Group - ' + searchYearText,
         fontSize: '24px'
       },
       options: {
         // values can be: 'bar', 'hbar', 'area', 'varea', 'line', 'vline'
-        aspect: 'hbar'
+        aspect: 'hbar'/* ,
+        side1: {
+          plotarea: {
+            backgroundColor: '#000'
+          }
+        },
+        side2: {
+          plotarea: {
+            backgroundColor: '#000'
+          }
+        } */
       },
       legend: {
         shared: true
@@ -79,7 +75,7 @@ window.addEventListener('load', () => {
           borderRadius: '3px'
         },
         valueBox: {
-          color: '#fff',
+          color: '#000',
           placement: 'top-in',
           thousandsSeparator: ','
         },
@@ -97,26 +93,21 @@ window.addEventListener('load', () => {
         label: {
           text: 'Age Groups'
         },
-        labels: ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-89', '90-94', '95-99', '100+'],
+        labels: ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-89', '90-94', '95+'],
       },
       scaleY: {
-        // scale label with unicode character
-        label: {
-          text: 'Population'
-        }
+        "short": true
       },
       series: [{
           text: 'Male',
-          values: malepop,//[1656154, 1787564, 1981671, 2108575, 2403438, 2366003, 2301402, 2519874, 3360596, 3493473, 1785638, 1447162, 1005011, 1330870, 1130632, 1121208, 2403438, 3360596, 3493473, 1785638, 1447162],
-          // two colors with a space makes a gradient
-          backgroundColor: '#4682b4',
+          values: malepop,
+          backgroundColor: '#6dace8 #007DF0',
           dataSide: 1
         },
         {
           text: 'Female',
-          values: femalepop,//[1656154, 1787564, 1981671, 2108575, 2403438, 2366003, 2301402, 2304444, 2426504, 2568938, 1785638, 1447162, 1005011, 1330870, 1130632, 1121208, 2108575, 2301402, 2304444, 2426504, 1568938],
-          // two colors with a space makes a gradient
-          backgroundColor: '#ee7988',
+          values: femalepop,
+          backgroundColor: '#D40D12 #e04a4e',
           dataSide: 2
         }
       ]
@@ -126,7 +117,94 @@ window.addEventListener('load', () => {
     zingchart.render({
       id: 'myChart',
       data: chartConfig,
-      height: '100%',
+      height: '80%',
       width: '100%',
     });
   });
+
+  function render() {
+    var searchCounty = document.getElementById("selcounty").value;
+    var searchCountyText = selcounty.options[selcounty.selectedIndex].text;
+    var searchYear = document.getElementById('selyear').value;
+    var searchYearText = selyear.options[selyear.selectedIndex].text;
+    var chartType = document.getElementById('seltype').value;
+    agepop = getAgeData(searchCounty,searchYear);
+    var malepop = [];
+    var femalepop = [];
+    for (i in agepop){
+      malepop.push(parseInt(agepop[i].malepopulation));
+      femalepop.push(parseInt(agepop[i].femalepopulation));
+    }
+    zingchart.render({
+      id: 'myChart',
+      data: {
+        "graphset": [{
+          "type": "pop-pyramid",
+          globals: {
+            fontSize: '14px'
+          },
+          legend: {
+            shared: true
+          },
+          title: {
+            text: searchCountyText + ' Population by Age Group - ' + searchYearText,
+            fontSize: '24px'
+          },
+          options: {
+            aspect: chartType,
+            side1: {
+              plotarea: {
+                backgroundColor: '#000'
+              }
+            },
+            side2: {
+              plotarea: {
+                backgroundColor: '#000'
+              }
+            }
+          },
+          plot: {
+            stacked: true,
+            tooltip: {
+              padding: '10px 15px',
+              borderRadius: '3px'
+            },
+            valueBox: {
+              color: '#fff',
+              placement: 'top-in',
+              thousandsSeparator: ','
+            },
+            // animation docs here:
+            // https://www.zingchart.com/docs/tutorials/design-and-styling/chart-animation/#animation__effect
+            animation: {
+              effect: 'ANIMATION_EXPAND_BOTTOM',
+              method: 'ANIMATION_STRONG_EASE_OUT',
+              sequence: 'ANIMATION_BY_NODE',
+              speed: 222
+            }
+          },
+          "scale-x": {
+            "values": ["0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90-94", "95+"]
+          },
+          "scale-y": {
+            "short": true
+          },
+          "series": [{
+              "text": "Male",
+              "data-side": 1,
+              "background-color": "#007DF0 #0055A4",
+              "values": malepop,
+            },
+            {
+              "text": "Female",
+              "data-side": 2,
+              "background-color": "#94090D #D40D12",
+              "values": femalepop
+            }
+          ]
+        }]
+      },
+      height: "80%",
+      width: "100%"
+    });
+  }
