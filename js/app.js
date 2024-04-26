@@ -83,17 +83,13 @@ renderBtn.addEventListener('click', render);
         // https://www.zingchart.com/docs/tutorials/design-and-styling/chart-animation/#animation__effect
         animation: {
           effect: 'ANIMATION_EXPAND_BOTTOM',
-          method: 'ANIMATION_STRONG_EASE_OUT',
+          method: 'ANIMATION_BOUNCE_EASE_OUT',
           sequence: 'ANIMATION_BY_NODE',
           speed: 222
         }
       },
-      scaleX: {
-        // set scale label
-        label: {
-          text: 'Age Groups'
-        },
-        labels: ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-89', '90-94', '95+'],
+      "scale-x": {
+        "values": ["0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90-94", "95+"],
         item: {
           'font-color': "black"
         }
