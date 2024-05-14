@@ -67,6 +67,7 @@ window.addEventListener('load', () => {
         options: {
           // values can be: 'bar', 'hbar', 'area', 'varea', 'line', 'vline'
           aspect: 'hbar',
+          'label-placement': "middle",
           side1: {
             plotarea: {
               backgroundColor: '#EEE'
@@ -79,6 +80,7 @@ window.addEventListener('load', () => {
           }
         },
         legend: {
+          visible: false,
           shared: true
         },
         // plot represents general series, or plots, styling
@@ -90,7 +92,7 @@ window.addEventListener('load', () => {
           },
           valueBox: {
             color: '#000',
-            placement: 'top-in',
+            placement: 'bottom-in',
             thousandsSeparator: ','
           },
           // animation docs here:
@@ -144,6 +146,7 @@ window.addEventListener('load', () => {
       options: {
         // values can be: 'bar', 'hbar', 'area', 'varea', 'line', 'vline'
         aspect: 'hbar',
+        'label-placement': "middle",
         side1: {
           plotarea: {
             backgroundColor: '#EEE'
@@ -168,7 +171,7 @@ window.addEventListener('load', () => {
         },
         valueBox: {
           color: '#000',
-          placement: 'top-in',
+          placement: 'bottom-in',
           thousandsSeparator: ','
         },
         // animation docs here:
@@ -268,6 +271,7 @@ window.addEventListener('load', () => {
             fontSize: '14px'
           },
           legend: {
+            visible: false,
             shared: true
           },
           title: {
@@ -276,6 +280,7 @@ window.addEventListener('load', () => {
           },
           options: {
             aspect: 'hbar',
+            'label-placement': "middle",
             side1: {
               plotarea: {
                 backgroundColor: '#EEE'
@@ -295,7 +300,7 @@ window.addEventListener('load', () => {
             },
             valueBox: {
               color: '#000',
-              placement: 'top-in',
+              placement: 'bottom-in',
               thousandsSeparator: ','
             },
             // animation docs here:
@@ -355,6 +360,7 @@ window.addEventListener('load', () => {
           },
           options: {
             aspect: 'hbar',
+            'label-placement': "middle",
             side1: {
               plotarea: {
                 backgroundColor: '#EEE'
@@ -374,7 +380,7 @@ window.addEventListener('load', () => {
             },
             valueBox: {
               color: '#000',
-              placement: 'top-in',
+              placement: 'bottom-in',
               thousandsSeparator: ','
             },
             // animation docs here:
