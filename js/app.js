@@ -61,8 +61,8 @@ window.addEventListener('load', () => {
           fontSize: '14px'
         },
         title: {
-          text: searchCountyText + ' Population by Age Group - ' + searchYearText,
-          fontSize: '24px'
+          text: searchCountyText + ' Population by Age - ' + searchYearText,
+          fontSize: '20px'
         },
         options: {
           // values can be: 'bar', 'hbar', 'area', 'varea', 'line', 'vline'
@@ -140,8 +140,8 @@ window.addEventListener('load', () => {
         fontSize: '14px'
       },
       title: {
-        text: searchCounty2Text + ' Population by Age Group - ' + searchYear2Text,
-        fontSize: '24px'
+        text: searchCounty2Text + ' Population by Age - ' + searchYear2Text,
+        fontSize: '20px'
       },
       options: {
         // values can be: 'bar', 'hbar', 'area', 'varea', 'line', 'vline'
@@ -275,8 +275,8 @@ window.addEventListener('load', () => {
             shared: true
           },
           title: {
-            text: searchCountyText + ' Population by Age Group - ' + searchYearText,
-            fontSize: '24px'
+            text: searchCountyText + ' Population by Age - ' + searchYearText,
+            fontSize: '20px'
           },
           options: {
             aspect: 'hbar',
@@ -355,8 +355,8 @@ window.addEventListener('load', () => {
             shared: true
           },
           title: {
-            text: searchCounty2Text + ' Population by Age Group - ' + searchYear2Text,
-            fontSize: '24px'
+            text: searchCounty2Text + ' Population by Age - ' + searchYear2Text,
+            fontSize: '20px'
           },
           options: {
             aspect: 'hbar',

@@ -14,11 +14,11 @@ body {
   justify-items: center;
 }
 
-.chart--container {
+/* .chart--container {
   min-height: 600px;
   width: 100%;
   height: 100%;
-}
+} */
 
 #renderBtn {
   grid-column: 2;
@@ -53,4 +53,37 @@ body {
  
 .zc-ref {
   display: none;
+}
+
+@media screen and (min-width:250px) and (max-width:500px){
+  .chart-parent--container {
+    
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 50px 50px 1fr 1fr;
+  }
+  .chart--container1 {
+    width: 80%;
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .chart--container2 {
+    width: 80%;
+    grid-column: 1;
+    grid-row: 5;
+  }
+    
+  #renderBtn {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  
+  .leftselect {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .rightselect {
+    grid-column: 1;
+    grid-row: 2;
+  }
 }
