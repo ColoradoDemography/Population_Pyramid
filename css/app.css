@@ -25,6 +25,26 @@ body {
   grid-row: 1;
 }
 
+.databutton { 
+  font-size: 90%; 
+  background:#d6d2c4;
+  color: black; 
+  text-decoration: none;
+  display: table-cell; 
+  cursor: pointer; 
+  font-weight: bold; 
+  text-align: center; 
+  border: 1px solid black; 
+  opacity: .9; 
+} 
+
+.dropbtn {
+  color: #efefef;
+  /*width: 40px; 
+  height: 40px; */
+  border: 2px solid black; 
+}
+
 .leftselect {
   grid-column: 1;
   grid-row: 1;
